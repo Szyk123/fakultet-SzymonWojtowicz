@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { todosSelector } from '../../store/selectors/todos.selectors';
 
 const useStyles = makeStyles({
-    movie: {
+    div: {
         width: '50%',
         border: '3px solid',
         margin: 'auto auto 60px',
@@ -34,13 +34,13 @@ const AddedMovies = () => {
     return (
         <div >
             <NavPanel />
-            {todos.map((todo, index) => <div key={index} className={classes.movie}>                  
+            {todos.map((todo, index) => <div key={index} className={classes.div}>                  
                 <h1>{todo.title}</h1>
                 <h1>{todo.year}</h1>
                 <img src={todo.poster}
                     alt={todo.title} />
                 <div>
-                <button onClick={() => todoService.deleteTodo({ done: false, title: todo.title, poster: todo.poster, year: todo.year, id: todo.id })}>Usun</button>
+                <button className={classes.button} onClick={() => todoService.deleteTodo({ done: false, title: todo.title, poster: todo.poster, year: todo.year, id: todo.id })}>Usun</button>
                 </div>
             </div>)}
         </div>

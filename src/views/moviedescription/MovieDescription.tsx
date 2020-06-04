@@ -3,7 +3,7 @@ import NavPanel from '../../components/navPanel/NavPanel'
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 const useStyles = makeStyles({
-    movie: {
+    div: {
         width: '50%',
         border: '3px solid',
         margin: 'auto auto 60px',
@@ -28,8 +28,10 @@ const MovieDescription = (props: any) => {
     return (
         <div>
             <NavPanel />
-              <div className={classes.movie}>
+              <div className={classes.div}>
                 <h3>{props.match.params.title}</h3>
+                <div><img src={props.match.params.poster} 
+                       alt={props.match.params.title}/></div>
                 <button className={classes.button}>{redirectTo('/search', 'Powrót')}</button>
             </div>)
         </div>

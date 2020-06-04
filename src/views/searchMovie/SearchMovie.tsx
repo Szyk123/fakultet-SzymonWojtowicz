@@ -56,7 +56,10 @@ const useStyles = makeStyles({
     textAlign: 'center',
     display: 'inline-block',
     fontSize: '12px',
-}
+},
+  div:{
+    textAlign: 'center',
+  }
 
 });
 
@@ -83,31 +86,26 @@ const SearchMovie = () => {
   return (
     <div>
       <NavPanel/>
+      <div className={classes.div}>
       <input className={classes.input}
         placeholder="Enter movie name"
         onChange={event => setMovieToSearch(event.target.value)}
       />
+      </div>
       <TableContainer component={Paper}>
         <Table className={classes.table}>
-          <TableHead>
-            <TableRow className={classes.tableRow}>
-              <TableCell> Poster</TableCell>
-              <TableCell align="right"> Title</TableCell>
-              <TableCell align="right"> Type</TableCell>
-              <TableCell align="right"> Year</TableCell>
-            </TableRow>
-          </TableHead>
           <TableBody>
             {!!movies?.movies.length &&
             movies?.movies.map(movie => (
-              <TableRow className={classes.tableRow} key={movie.id}>
-                <TableCell>
-                  <img src={movie.poster}
+              <TableRow className={classes.tableRow} key={movie.id} >
+                <div className={classes.div}><h1>{movie.title}</h1> </div>
+                <div className={classes.div}><h2>{movie.year}</h2> </div>
+                  
+                  <img src={movie.poster} onClick={() => history.push('/moviedescription/'+movie.id+'/'+movie.title)}
                        alt={movie.title}/>
-                </TableCell>
-                <TableCell className={classes.tableCell} align="right"> {movie.title} <button className={classes.button} onClick={() =>todoService.setNewTodo({ done: false, title: movie.title, poster: movie.poster, year: movie.year, id: movie.id })}>Dodaj do ulubionych</button></TableCell>
-                <TableCell className={classes.tableCell} align="right"> {movie.type} <button className={classes.button}>{redirectTo('/moviedescription/'+movie.id+'/'+movie.title, 'Opis')}</button></TableCell>
-                <TableCell className={classes.tableCell} align="right"> {movie.year}</TableCell>
+                  <button className={classes.button} onClick={() =>todoService.setNewTodo({ done: false, title: movie.title, poster: movie.poster, year: movie.year, id: movie.id })}>Dodaj do ulubionych</button>
+                  {/* <button className={classes.button}>{redirectTo('/moviedescription/'+movie.id+'/'+movie.title, 'Opis')}</button> */}
+                 
               </TableRow>
             ))
             }

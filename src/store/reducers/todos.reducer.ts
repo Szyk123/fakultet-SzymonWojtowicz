@@ -15,13 +15,7 @@ export interface ITodosListStoreState {
 
 export const todosListInitialState: ITodosListStoreState = {
   list: [
-    {
-      id: '',
-      title: '',
-      done: false,
-      poster: '',
-      year: ''
-    }
+
   ],
 };
 
