@@ -25,8 +25,19 @@ const useStyles = makeStyles({
         fontSize: '16px',
     }
 });
-
-
+function Obejrzane() {
+    return <h1>Obejrzane</h1>;
+  }
+  
+function Wtrakcie() {
+    return <h1>W trakcie</h1>;
+  }
+function Status(props: boolean) {
+  if (props) {
+    return <Obejrzane />;
+  }
+  return <Wtrakcie />;
+}
 const AddedMovies = () => {
     const classes = useStyles();
     const todoService = useService(TodoService);
@@ -41,6 +52,8 @@ const AddedMovies = () => {
                     alt={todo.title} />
                 <div>
                 <button className={classes.button} onClick={() => todoService.deleteTodo({ done: false, title: todo.title, poster: todo.poster, year: todo.year, id: todo.id })}>Usun</button>
+                <button className={classes.button} onClick={() => todoService.setTodoDone({ done: !todo.done, title: todo.title, poster: todo.poster, year: todo.year, id: todo.id })}>Zaznacz obejrzane</button>
+                {Status(todo.done) }
                 </div>
             </div>)}
         </div>

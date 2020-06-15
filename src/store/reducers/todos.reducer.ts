@@ -35,7 +35,7 @@ export const todosStoreReducer: Reducer<ITodosListStoreState, Actions> = (state:
     case TodoStoreActions.SET_TODO_DONE:
       const todoFound = state.list.find(el => el.id === actions.payload.id);
       if (todoFound) {
-        todoFound.done = true;
+        todoFound.done = !todoFound.done;
         return {
           ...state,
           list: [...state.list.filter(el => el.id !== actions.payload.id), todoFound],
